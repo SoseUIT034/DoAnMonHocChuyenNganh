@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<!-- Basic page needs
+		============================================ -->	
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Xem chi tiết sản phẩm</title>
+        	
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript">
+			//<![CDATA[
+			function Pager(tableName, itemsPerPage) {
+				this.tableName = tableName;
+				this.itemsPerPage = itemsPerPage;
+				this.currentPage = 1;
+				this.pages = 0;
+				this.inited = false;
+			   
+				this.showRecords = function(from, to) {      
+					var rows = document.getElementById(tableName).rows;
+					// i starts from 1 to skip table header row
+					for (var i = 1; i < rows.length; i++) {
+						if (i < from || i > to)
+							rows[i].style.display = 'none';
+						else
+							rows[i].style.display = '';
+					}
+				}
+			   
+				this.showPage = function(pageNumber) {
+					  if (! this.inited) {
+							   alert("not inited");
+							   return;
+					  }
+					var oldPageAnchor = document.getElementById('pg'+this.currentPage);
+					oldPageAnchor.className = 'pg-normal';
+				   
+					this.currentPage = pageNumber;
+					var newPageAnchor = document.getElementById('pg'+this.currentPage);
+					newPageAnchor.className = 'pg-selected';
+				   
+					var from = (pageNumber - 1) * itemsPerPage + 1;
+					var to = from + itemsPerPage - 1;
+					this.showRecords(from, to);
+				}  
+			   
+				this.prev = function() {
+					if (this.currentPage > 1)
+						this.showPage(this.currentPage - 1);
+				}
+			   
+				this.next = function() {
+					if (this.currentPage < this.pages) {
+						this.showPage(this.currentPage + 1);
+					}
+				}                      
+			   
+				this.init = function() {
+					var rows = document.getElementById(tableName).rows;
+					var records = (rows.length - 1);
+					this.pages = Math.ceil(records / itemsPerPage);
+					this.inited = true;
+				}
+				this.showPageNav = function(pagerName, positionId) {
+					  if (! this.inited) {
+							   alert("not inited");
+							   return;
+					  }
+					  var element = document.getElementById(positionId);
+					 
+					  var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> &#171 Prev </span> | ';
+					for (var page = 1; page <= this.pages; page++)
+						pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</span> | ';
+					pagerHtml += '<span onclick="'+pagerName+'.next();" class="pg-normal"> Next &#187;</span>';          
+				   
+					element.innerHTML = pagerHtml;
+				}
+			}
+			//]]>
+		</script>
+
+	</head>
+    <body>
+		<div id="header">
+			<h1><a href="/">PhONe STORE</a></h1>
+			<ul id="navlist">
+				<li class="first"><a href="#" id="current">Home</a></li>
+				<li><a href="#">Store</a></li>
+				<li><a href="shoppingcart.html" id="cart-status">Cart</a></li>
+				<li><a href="#">Admin</a></li>
+			</ul>	
+		</div>
+		<div id = "menulaber">
+			<ul id="categories">
+				<li><a href="#">iPhone</a>
+				</li>
+				<li><a href="#">Samsung</a>
+				</li>
+				<li><a href="#">Nokia</a>
+				</li>
+				<li><a href="#">Sony</a>
+				</li>
+				<li><a href="#">Oppo</a>
+				</li>
+				<li><a href="#">HTC</a>
+				</li>
+				<li><a href="#">Lenovo</a>
+				</li>
+				<li><a href="#">Asus</a>
+				</li>
+				<li><a href="#">LG</a>
+				</li>
+				<li><a href="#">Mobiistar</a>
+				</li>
+			</ul>	
+		</div>	
+		<div id="main">
+			<h2>Thông tin sản phẩm</h2>
+			<p></p>
+			<div class="container">
+				<div class="row" style = "width: 100%;">
+					<div class="col-md-5" style = "float: left;">
+						<img src="iPhone.jpg" alt="image" style="width:80%"/>
+					</div>
+					<div class="col-md-5" style = "float: right;">
+						<h3 style = "font-size: 30px; "><strong>iPhone 6S Plus</strong></h3>
+						<p style = "width: 300px;">Màn hình: Retina HD, 5.5 inches;
+							HĐH: iOS 9;
+							CPU: Chipset Apple A9;
+							Camera: 12 MP, 1 SIM;
+							Pin: Li-Po 2915 mAh;</p>
+						<p><strong>Nhà sản xuất</strong>: Apple</p>
+						<p><strong>Giá</strong>: 21.790.000đ</p>
+
+						<p style = "margin-top: 50px;">
+							<button class = "btn-cancel"><img src = "back.png"></button>
+							<button class = "btn-addtocart"><img src = "cart.png"></button>
+						</p>
+
+					</div>
+				</div>
+			</div>			
+		</div>
+		<div id="footer">
+			by <a href="">UIT</a>
+		</div>
+	</body>
+</html>
