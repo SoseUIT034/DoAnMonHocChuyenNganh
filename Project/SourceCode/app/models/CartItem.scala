@@ -20,15 +20,8 @@ object CartItemForm{
           "phone" -> longNumber,
           "username" -> nonEmptyText,
           "password" -> nonEmptyText,
-          "address" -> mapping(
-            "name" -> nonEmptyText,
-            "number" -> nonEmptyText,
-            "city" -> nonEmptyText,
-            "state" -> nonEmptyText,
-            "country" -> nonEmptyText,
-            "zipcode" -> nonEmptyText
-          )(AddressFormData.apply)(AddressFormData.unapply)
-        )(CustomerFormData1.apply)(CustomerFormData1.unapply),
+          "address" -> nonEmptyText
+        )(CustomerFormData.apply)(CustomerFormData.unapply),
         "grandTotal" -> longNumber
       )(CartFormData.apply)(CartFormData.unapply),
       "product" -> mapping(
