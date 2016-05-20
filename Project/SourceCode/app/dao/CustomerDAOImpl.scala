@@ -19,13 +19,26 @@ class CustomerDAOImpl @Inject()(dbConfigProvider: DatabaseConfigProvider) extend
 
   val dbConfig = dbConfigProvider.get[JdbcProfile]
 
-  override def add(customer: Customer): Future[String] = ???
+  import dbConfig._
+  import driver.api._
 
-  override def get(id: Long): Future[Option[Customer]] = ???
+  override def add(customer: Customer): Future[String] = {
+    db.run(CustomerMap.customerTableQuery += customer).map(res => "Customer Successfully Added").recover{
+      case ex: Exception => ex.getCause.getMessage
+    }
+  }
 
-  override def delete(id: Long): Future[Int] = ???
+  override def get(id: Long): Future[Option[Customer]] = {
+    db.run(CustomerMap.customerTableQuery.filter(_.id === id).result.headOption)
+  }
 
-  override def listAll: Future[Seq[Customer]] = ???
+  override def delete(id: Long): Future[Int] = {
+    db.run(CustomerMap.customerTableQuery.filter(_.id === id).delete)
+  }
+
+  override def listAll: Future[Seq[Customer]] = {
+    db.run(CustomerMap.customerTableQuery.result)
+  }
 }
 
 object CustomerMap {

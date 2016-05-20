@@ -23,7 +23,7 @@ class ProductDAOImpl @Inject()(dbConfigProvider: DatabaseConfigProvider) extends
   import driver.api._
 
   override def add(product: Product): Future[String] = {
-    db.run(ProductMap.productTableQuery += product).map(res => "Product Successfuly Added").recover{
+    db.run(ProductMap.productTableQuery += product).map(res => "Product Successfully Added").recover{
       case ex: Exception => ex.getCause.getMessage
     }
   }
