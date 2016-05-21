@@ -1,0 +1,68 @@
+@()
+
+@main("Thông tin sản phẩm - admin") {
+    @header()
+    <div id="main">
+        <h2>Thông tin sản phẩm</h2>
+        <form action="" method="post">
+            <fieldset>
+                <div class="editor-label">
+                    <label for="ProductName">Tên sản phẩm:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="ProductName" name="ProductName" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="ProductName" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="Manufacture">Hãng sản xuất:</label>
+                </div>
+                <div class="editor-field">
+                    <select id="ArtistId" name="Manufacture">
+                        <option value="1">iPhone</option>
+                        <option value="2">Samsung</option>
+                        <option value="3">Nokia</option>
+                        <option value="4">Sony</option>
+                        <option value="5">Oppo</option>
+                    </select>
+                    <span class="field-validation-valid" data-valmsg-for="ArtistId" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="ProductInfo">Thông tin kĩ thuật:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="ProductInfo" name="ProductInfo" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="ProductInfo" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="ProductPrice">Giá sản phẩm:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="ProductPrice" name="ProductPrice" type="text" value="">đ
+                    <span class="field-validation-valid" data-valmsg-for="ProductPrice" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="UnitInStock">Số lượng tồn:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="UnitInStock" name="UnitInStock" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="UnitInStock" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="ProductImage">Chọn ảnh sản phẩm:</label>
+                </div>
+                <div class="editor-field">
+                    <input type="file" name="anh">
+                    <span class="field-validation-valid" data-valmsg-for="ProductImage" data-valmsg-replace="true"></span>
+                </div>
+                <br>
+                <p style = "text-align: center">
+                    <button class = "btn-insert"><a>Save</a></button>
+                    <button class = "btn-cancel"><a href="">Cancel</a></button>
+                </p>
+            </fieldset>
+        </form>
+        <a href="" class="btn btn-default">Back To List</a>
+
+    </div>
+   @footer()
+}

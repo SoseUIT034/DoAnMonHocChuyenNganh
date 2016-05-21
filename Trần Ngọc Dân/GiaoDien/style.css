@@ -51,7 +51,8 @@ ul li a
 	overflow: hidden;
 	padding: 0 0 15px 10px;
 	float: left;
-	margin-left: 40px;
+	float: right;
+	width: 87%;
 }
 
 ul
@@ -153,6 +154,40 @@ ul#navlist li:first-child a
 }
 
 ul#navlist li a:hover
+{
+	color: #F6855E;
+}
+
+/********************* End top navigation ***************************/
+
+/******************** Top Navigation Left************************/
+ul#navlist-left
+{
+	float: left;
+		margin-left: 50px;
+}
+
+ul#navlist-left li
+{
+	display: inline;
+}
+
+ul#navlist-left li a
+{
+	border-left: 1px dotted #8A8575;
+	padding: 10px;
+	margin-top: 10px;
+	color: #8A8575;
+	text-decoration: none;
+	float: left;
+}
+
+ul#navlist-left li:first-child a
+{
+	border: none;
+}
+
+ul#navlist-left li a:hover
 {
 	color: #F6855E;
 }
@@ -489,8 +524,9 @@ input::-moz-focus-inner {padding:.4em;} .button[disabled],.button[disabled]:hove
     content: "\27a6";
 }
 
+#menulaber {float: left}
 #menulaber ul { list-style: none; margin: 0; padding: 0; }
-#menulaber img {  border: none; } #menulaber { width: 200px; margin: 10px; }
+#menulaber img {  border: none; } #menulaber { width: 100px; margin: 10px; }
 #menulaber li a {  height: 32px; font-family: Verdana, Arial, Helvetica, sans-serif;  margin: 0; font-size: 10pt; font-weight: bold; background: #FFF; height:  22px; text-decoration: none; }
 #menulaber li a:link, #menulaber li a:visited {  color: #666; display: block; background:  url(http://1.bp.blogspot.com/-USVHn3SWBQE/T3b_VHzkwPI/AAAAAAAAAz8/HSo-JshWwAE/s320/menu9-namkna-blogspot.gif);  padding: 10px 0 0 35px; }
 #menulaber li a:hover { color: #000; background:   url(http://1.bp.blogspot.com/-USVHn3SWBQE/T3b_VHzkwPI/AAAAAAAAAz8/HSo-JshWwAE/s320/menu9-namkna-blogspot.gif)  0 -32px; padding: 10px 0 0 35px; }  
@@ -507,4 +543,19 @@ input::-moz-focus-inner {padding:.4em;} .button[disabled],.button[disabled]:hove
 	color: black;
 	width: 100px;
 	height: 30px;
+}
+
+.single-product-content {
+	width: 200px;
+	float: left;
+	box-sizing: border-box;
+	font-family: Arial,sans-serif;
+	display: block;    
+	font-size: 14px;
+    line-height: 1.42857143;
+	border: 1px solid #000;
+	margin-right: 30px;
+	margin-left: 30px;
+	margin-bottom: 20px;
+	margin-top: 20px;
 }

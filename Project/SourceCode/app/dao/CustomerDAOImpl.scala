@@ -7,7 +7,7 @@ import models.Customer
 import play.api.Play.current
 import play.api.db.slick.DatabaseConfigProvider
 import slick.driver.JdbcProfile
-
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 /**
@@ -28,11 +28,11 @@ class CustomerDAOImpl @Inject()(dbConfigProvider: DatabaseConfigProvider) extend
     }
   }
 
-  override def get(id: Long): Future[Option[Customer]] = {
+  override def get(id: Int): Future[Option[Customer]] = {
     db.run(CustomerMap.customerTableQuery.filter(_.id === id).result.headOption)
   }
 
-  override def delete(id: Long): Future[Int] = {
+  override def delete(id: Int): Future[Int] = {
     db.run(CustomerMap.customerTableQuery.filter(_.id === id).delete)
   }
 
@@ -55,13 +55,13 @@ object CustomerMap {
 
     def email = column[String]("customer_email")
 
-    def phone = column[Double]("customer_phone")
+    def phone = column[Long]("customer_phone")
 
     def username = column[String]("username")
 
     def password = column[String]("password")
 
-    def address = column[Int]("address")
+    def address = column[String]("address")
 
 
     override def * = (id, name, email, phone, username, password, address) <>(Customer.tupled, Customer.unapply)

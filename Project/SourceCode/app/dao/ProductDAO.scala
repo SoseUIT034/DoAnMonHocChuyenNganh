@@ -12,7 +12,7 @@ import scala.concurrent.Future
 @ImplementedBy(classOf[ProductDAOImpl])
 trait ProductDAO {
   def add(product: Product) : Future[String]
-  def get(id : Long) : Future[Option[Product]]
-  def delete(id : Long) : Future[Int]
+  def get(id : Int) : Future[Option[Product]]
+  def delete(id : Int) : Future[Int]
   def listAll : Future[Seq[Product]]
 }

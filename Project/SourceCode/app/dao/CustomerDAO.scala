@@ -6,14 +6,13 @@ import models._
 import scala.concurrent.Future
 
 /**
-  * Created by Canh on 5/14/2016.
+  * Created by Canh on 5/20/2016.
   */
 
-@ImplementedBy(classOf[CustomerDAOImpl])
+@ImplementedBy(classOf[CustomerDAO])
 trait CustomerDAO {
   def add(customer: Customer) : Future[String]
-  def get(id : Long) : Future[Option[Customer]]
-  def delete(id : Long) : Future[Int]
+  def get(id : Int) : Future[Option[Customer]]
+  def delete(id : Int) : Future[Int]
   def listAll : Future[Seq[Customer]]
-
 }

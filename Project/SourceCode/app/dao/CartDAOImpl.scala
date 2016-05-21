@@ -7,7 +7,7 @@ import models.Cart
 import play.api.Play._
 import play.api.db.slick.DatabaseConfigProvider
 import slick.driver.JdbcProfile
-
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 /**
@@ -28,11 +28,11 @@ class CartDAOImpl @Inject() (dbConfigProvider: DatabaseConfigProvider) extends C
     }
   }
 
-  override def get(id: Long): Future[Option[Cart]] = {
+  override def get(id: Int): Future[Option[Cart]] = {
     db.run(CartMap.cartTableQuery.filter(_.cartId === id).result.headOption)
   }
 
-  override def delete(id: Long): Future[Int] = {
+  override def delete(id: Int): Future[Int] = {
     db.run(CartMap.cartTableQuery.filter(_.cartId === id).delete)
   }
 
@@ -53,7 +53,7 @@ object CartMap {
 
     def customer = foreignKey("cart_customer_pk", customerId, CustomerMap.customerTableQuery)(_.id)
 
-    override def * = (cartId.?, customerId, grandTotal)<>(Cart.tupled, Cart.unapply)
+    override def * = (cartId, customerId, grandTotal)<>(Cart.tupled, Cart.unapply)
   }
 
   implicit val cartTableQuery = TableQuery[CartTable]

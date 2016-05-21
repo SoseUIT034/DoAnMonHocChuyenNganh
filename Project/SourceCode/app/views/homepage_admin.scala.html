@@ -1,0 +1,85 @@
+@(productForm: Form[models.ProductFormData],products : Seq[models.Product])(implicit request: RequestHeader,messages : Messages)
+
+@main("Trang chủ - admin") {
+    @request.flash.get(messages("flash.success")).map { msg =>
+        <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>@msg</strong>
+        </div>
+    }
+    @request.flash.get(messages("flash.error")).map { msg =>
+        <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>@msg</strong>
+        </div>
+    }
+    @header()
+    <div id="main">
+        <h2>Sản phẩm</h2>
+        <p>
+            <button class = "btn-insert"><a href="@routes.ProductController.addProduct()" style="color: white;">Thêm mới</a></button>
+        </p>
+
+        <form id="product-data-form" role="form" action='@routes.ProductController.home()' method="post">
+            <table id="results">
+                <tbody>
+                    <tr>
+                        <th>
+                            Tên điện thoại
+                        </th>
+                        <th>
+                            Hãng sản xuất
+                        </th>
+                        <th class = "th-info">
+                            Thông tin kĩ thuật
+                        </th>
+                        <th>
+                            Giá
+                        </th>
+                        <th>
+                            Số lượng tồn
+                        </th>
+                        <th></th>
+                    </tr>
+                    @for(product <- products){
+                    <tr>
+                        <td>
+                            <a href="@routes.ProductController.addProduct()">@product.name</a>
+                        </td>
+                        <td>
+                            @product.category
+                        </td>
+                        <td class = "td-info">
+                            <wbr>
+                            @product.description
+                            <wbr>
+                        </td>
+                        <td>
+                            @product.price
+                        </td>
+                        <td>
+                            @product.unitInStock
+                        </td>
+                        <td style = "text-align: center;">
+                            <a href="@routes.ProductController.addProduct()" class="button edit"></a>
+                            <a href="@routes.ProductController.deleteProduct(product.id)" class="button delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <div id="pageNavPosition" style = "margin-top: 20px;"></div>
+        <script type="text/javascript">
+                var pager = new Pager('results', 10);
+                pager.init();
+                pager.showPageNav('pager', 'pageNavPosition');
+                pager.showPage(1);
+        </script>
+    </div>
+
+    @footer()
+    }
+}

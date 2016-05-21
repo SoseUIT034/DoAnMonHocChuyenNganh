@@ -11,7 +11,7 @@ import scala.concurrent.Future
 @ImplementedBy(classOf[CartItemDAOImpl])
 trait CartItemDAO {
   def add(cartItem: CartItem) : Future[String]
-  def get(id : Long) : Future[Option[CartItem]]
-  def delete(id : Long) : Future[Int]
+  def get(id : Int) : Future[Option[CartItem]]
+  def delete(id : Int) : Future[Int]
   def listAll : Future[Seq[CartItem]]
 }

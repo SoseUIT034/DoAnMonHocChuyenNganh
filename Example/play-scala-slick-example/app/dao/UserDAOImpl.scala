@@ -8,6 +8,7 @@ import slick.driver.JdbcProfile
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits._
 
+
 @Singleton
 class UserDAOImpl @Inject()
 (dbConfigProvider: DatabaseConfigProvider) extends UserDAO {

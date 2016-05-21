@@ -1,0 +1,35 @@
+@()
+
+@main("Danh sách sản phẩm") {
+    @header()
+
+    <div id="main">
+        <h2>Iphone</h2>
+        <p></p>
+        <div class="container">
+            <div class="row" style = "width: 100%; text-align: center;">
+                <div class="single-product-content">
+                    <br>
+                    <div class="products">
+                        <a href="" title="" class="product-image">
+                            <span class="product-image">
+                                <img src="@routes.Assets.at("images/iPhone.jpg")" alt="" style = "width: 50%;">
+                            </span>
+
+                        </a>
+
+                    </div>
+                    <h2 class="product-name" style = "margin-top: 10px;"><a href="" title="Fusce aliquam">Iphone 6S 64GB</a></h2>
+                    <div class="price-box">
+                        <p class="new-price"> <span class="price">21.799.000đ</span></p>
+                    </div>
+                    <p style = "margin-top: 5px; margin-left: -10px;">
+                        <button class = "btn-addtocart"><img src = "@routes.Assets.at("images/cart.png")"></button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   @footer()
+}

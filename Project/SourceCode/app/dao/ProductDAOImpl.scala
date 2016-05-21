@@ -7,6 +7,7 @@ import models.Product
 import play.api.Play._
 import play.api.db.slick.DatabaseConfigProvider
 import slick.driver.JdbcProfile
+import scala.concurrent.ExecutionContext.Implicits.global
 
 import scala.concurrent.Future
 
@@ -28,11 +29,11 @@ class ProductDAOImpl @Inject()(dbConfigProvider: DatabaseConfigProvider) extends
     }
   }
 
-  override def get(id: Long): Future[Option[Product]] = {
+  override def get(id: Int): Future[Option[Product]] = {
     db.run(ProductMap.productTableQuery.filter(_.id === id).result.headOption)
   }
 
-  override def delete(id: Long): Future[Int] = {
+  override def delete(id: Int): Future[Int] = {
     db.run(ProductMap.productTableQuery.filter(_.id === id).delete)
   }
 
@@ -52,7 +53,7 @@ object ProductMap {
     def name = column[String]("product_name")
     def category = column[String]("category")
     def description = column[String]("description")
-    def price = column[Double]("product_price")
+    def price = column[Long]("product_price")
     def unitInStock = column[Int]("unitInStock")
 
     override def * = (id, name, category, description, price, unitInStock) <> (Product.tupled, Product.unapply)

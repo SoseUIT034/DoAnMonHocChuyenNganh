@@ -1,0 +1,35 @@
+@()
+
+@main("Thông tin chi tiết sản phẩm") {
+    @header()
+
+    <div id="main">
+        <h2>Thông tin sản phẩm</h2>
+        <p></p>
+        <div class="container">
+            <div class="row" style = "width: 100%;">
+                <div class="col-md-5" style = "float: left;">
+                    <img src="@routes.Assets.at("images/iPhone.jpg")" alt="image" style="width:80%"/>
+                </div>
+                <div class="col-md-5" style = "float: right;">
+                    <h3 style = "font-size: 30px; "><strong>iPhone 6S Plus</strong></h3>
+                    <p style = "width: 300px;">Màn hình: Retina HD, 5.5 inches;
+                        HĐH: iOS 9;
+                        CPU: Chipset Apple A9;
+                        Camera: 12 MP, 1 SIM;
+                        Pin: Li-Po 2915 mAh;</p>
+                    <p><strong>Nhà sản xuất</strong>: Apple</p>
+                    <p><strong>Giá</strong>: 21.790.000đ</p>
+
+                    <p style = "margin-top: 50px;">
+                        <button class = "btn-cancel"><img src = "@routes.Assets.at("images/back.png")"></button>
+                        <button class = "btn-addtocart"><img src = "@routes.Assets.at("images/cart.png")"></button>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   @footer()
+}
