@@ -1,0 +1,22 @@
+@()
+
+<div id="header">
+    <h1><a href="/">PhONe STORE</a></h1>
+    <ul id="navlist-left">
+        <li class="first"><a href="@routes.ProductController.listProduct()" id="current">Home</a></li>
+    </ul>
+    <ul id="navlist">
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Logout</a></li>
+    </ul>
+</div>
+<div id = "menulaber">
+    <ul id="categories">
+        <li><a href="@routes.ProductController.allProduct()">Product</a>
+        </li>
+        <li><a href="@routes.CustomerController.listCustomer()">Customer</a>
+        </li>
+        <li><a href="@routes.CartController.listCartItem()">Cart</a>
+        </li>
+    </ul>
+</div>

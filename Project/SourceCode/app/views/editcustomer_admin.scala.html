@@ -1,0 +1,62 @@
+@(customerForm: Form[models.CustomerFormData],customers : Seq[models.Customer])(implicit request: RequestHeader,messages : Messages)
+
+@main("Thông tin sản phẩm - admin") {
+    @header_admin()
+    <div id="main">
+        <h2>Thông tin sản phẩm</h2>
+        <form action="@routes.CustomerController.saveCustomer()" method="post">
+            <fieldset>
+                <div class="editor-label">
+                    <label for="name">Tên khách hàng:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="name" name="name" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="name" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="email">Email:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="email" name="email" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="email" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="phone">Phone:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="phone" name="phone" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="phone" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="address">Địa chỉ:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="address" name="address" type="text" value="">đ
+                    <span class="field-validation-valid" data-valmsg-for="address" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="username">Tên tài khoản:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="username" name="username" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="username" data-valmsg-replace="true"></span>
+                </div>
+                <div class="editor-label">
+                    <label for="password">Mật khẩu:</label>
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="password" name="password" type="password" value="">
+                    <span class="field-validation-valid" data-valmsg-for="password" data-valmsg-replace="true"></span>
+                </div>
+                <br>
+                <p style = "text-align: center">
+                    <button type = "submit" class = "btn-insert"><a>Save</a></button>
+                    <button class = "btn-cancel"><a href="@routes.CustomerController.listCustomer()">Cancel</a></button>
+                </p>
+            </fieldset>
+        </form>
+        <a href="@routes.CustomerController.listCustomer()" class="btn btn-default">Back To List</a>
+
+    </div>
+   @footer()
+}

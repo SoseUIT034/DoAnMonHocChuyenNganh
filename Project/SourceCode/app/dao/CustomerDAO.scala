@@ -9,7 +9,7 @@ import scala.concurrent.Future
   * Created by Canh on 5/20/2016.
   */
 
-@ImplementedBy(classOf[CustomerDAO])
+@ImplementedBy(classOf[CustomerDAOImpl])
 trait CustomerDAO {
   def add(customer: Customer) : Future[String]
   def get(id : Int) : Future[Option[Customer]]

@@ -1,51 +1,52 @@
-@()
+@(productForm: Form[models.ProductFormData])(implicit request: RequestHeader,messages : Messages)
 
 @main("Thông tin sản phẩm - admin") {
-    @header()
+    @header_admin()
     <div id="main">
         <h2>Thông tin sản phẩm</h2>
-        <form action="" method="post">
+        <form action="@routes.ProductController.savedProduct()" method="post">
             <fieldset>
                 <div class="editor-label">
                     <label for="ProductName">Tên sản phẩm:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="ProductName" name="ProductName" type="text" value="">
-                    <span class="field-validation-valid" data-valmsg-for="ProductName" data-valmsg-replace="true"></span>
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="name" name="name" type="text" value="@productForm("name").value">
+                    <span class="field-validation-valid" data-valmsg-for="name" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="Manufacture">Hãng sản xuất:</label>
                 </div>
                 <div class="editor-field">
-                    <select id="ArtistId" name="Manufacture">
+                    <select id="category" name="category" value = "@productForm("category").value">
+                        <option value="0"></option>
                         <option value="1">iPhone</option>
                         <option value="2">Samsung</option>
                         <option value="3">Nokia</option>
                         <option value="4">Sony</option>
                         <option value="5">Oppo</option>
                     </select>
-                    <span class="field-validation-valid" data-valmsg-for="ArtistId" data-valmsg-replace="true"></span>
+                    <span class="field-validation-valid" data-valmsg-for="category" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
-                    <label for="ProductInfo">Thông tin kĩ thuật:</label>
+                    <label for="description">Thông tin kĩ thuật:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="ProductInfo" name="ProductInfo" type="text" value="">
-                    <span class="field-validation-valid" data-valmsg-for="ProductInfo" data-valmsg-replace="true"></span>
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="description" name="description" type="text" value="@productForm("description").value">
+                    <span class="field-validation-valid" data-valmsg-for="description" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
-                    <label for="ProductPrice">Giá sản phẩm:</label>
+                    <label for="price">Giá sản phẩm:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="ProductPrice" name="ProductPrice" type="text" value="">đ
-                    <span class="field-validation-valid" data-valmsg-for="ProductPrice" data-valmsg-replace="true"></span>
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="price" name="price" type="text" value="@productForm("price").value">đ
+                    <span class="field-validation-valid" data-valmsg-for="price" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
-                    <label for="UnitInStock">Số lượng tồn:</label>
+                    <label for="unitInStock">Số lượng tồn:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="UnitInStock" name="UnitInStock" type="text" value="">
-                    <span class="field-validation-valid" data-valmsg-for="UnitInStock" data-valmsg-replace="true"></span>
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="unitInStock" name="unitInStock" type="text" value="@productForm("unitInStock").value">
+                    <span class="field-validation-valid" data-valmsg-for="unitInStock" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="ProductImage">Chọn ảnh sản phẩm:</label>
@@ -56,12 +57,12 @@
                 </div>
                 <br>
                 <p style = "text-align: center">
-                    <button class = "btn-insert"><a>Save</a></button>
-                    <button class = "btn-cancel"><a href="">Cancel</a></button>
+                    <button type = "submit" class = "btn-insert"><a>Save</a></button>
+                    <button class = "btn-cancel"><a href="@routes.ProductController.allProduct()">Cancel</a></button>
                 </p>
             </fieldset>
         </form>
-        <a href="" class="btn btn-default">Back To List</a>
+        <a href="@routes.ProductController.allProduct()" class="btn btn-default">Back To List</a>
 
     </div>
    @footer()

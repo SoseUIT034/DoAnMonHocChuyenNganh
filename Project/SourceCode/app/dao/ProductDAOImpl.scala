@@ -53,7 +53,7 @@ object ProductMap {
     def name = column[String]("product_name")
     def category = column[String]("category")
     def description = column[String]("description")
-    def price = column[Long]("product_price")
+    def price = column[Long]("price")
     def unitInStock = column[Int]("unitInStock")
 
     override def * = (id, name, category, description, price, unitInStock) <> (Product.tupled, Product.unapply)

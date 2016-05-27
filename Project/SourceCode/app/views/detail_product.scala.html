@@ -1,4 +1,4 @@
-@()
+@(productForm: Form[models.ProductFormData],products : Seq[models.Product])(implicit request: RequestHeader,messages : Messages)
 
 @main("Thông tin chi tiết sản phẩm") {
     @header()

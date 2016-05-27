@@ -3,11 +3,29 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
-GET     /admin                      controllers.ProductController.home
-GET     /list_product               controllers.ProductController.home
-GET     /edit_product               controllers.ProductController.addProduct
-GET     /delete_product               controllers.ProductController.deleteProduct(id: Int)
+GET     /                           controllers.ProductController.listProduct
+GET     /list_product               controllers.ProductController.listProduct
+
+GET     /product_admin              controllers.ProductController.allProduct
+GET     /add_product                controllers.ProductController.addProduct
+GET     /edit_product               controllers.ProductController.editProduct(id: Int)
+POST    /saved_product               controllers.ProductController.savedProduct
+GET     /delete_product             controllers.ProductController.deleteProduct(id: Int)
+
+
+GET     /list_customer              controllers.CustomerController.listCustomer
+GET     /add_customer               controllers.CustomerController.addCustomer
+GET     /edit_customer              controllers.CustomerController.editCustomer
+POST    /saved_customer              controllers.CustomerController.savedCustomer
+GET     /delete_customer            controllers.CustomerController.deleteCustomer(id: Int)
+
+#GET     /list_cart                  controllers.CartController.listCart#
+#GET     /add_cart                   controllers.CartController.addCart#
+#GET     /delete_cart                controllers.CartController.deleteCart#(id: Int)
+
+GET     /list_cartItem              controllers.CartController.listCartItem
+#GET     /add_cartItem               controllers.CartController.addCartItem#
+GET     /delete_cartItem            controllers.CartController.deleteCartItem(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

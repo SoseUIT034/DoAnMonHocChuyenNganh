@@ -1,6 +1,6 @@
-@(productForm: Form[models.ProductFormData],products : Seq[models.Product])(implicit request: RequestHeader,messages : Messages)
+@(products : Seq[models.Product])(implicit request: RequestHeader,messages : Messages)
 
-@main("Trang chủ - admin") {
+@main("Danh sách sản phẩm - admin") {
     @request.flash.get(messages("flash.success")).map { msg =>
         <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -13,14 +13,14 @@
             <strong>@msg</strong>
         </div>
     }
-    @header()
+    @header_admin()
     <div id="main">
         <h2>Sản phẩm</h2>
         <p>
             <button class = "btn-insert"><a href="@routes.ProductController.addProduct()" style="color: white;">Thêm mới</a></button>
         </p>
 
-        <form id="product-data-form" role="form" action='@routes.ProductController.home()' method="post">
+        <form id="product-data-form" role="form" action='@routes.ProductController.allProduct()' method="post">
             <table id="results">
                 <tbody>
                     <tr>
@@ -61,10 +61,11 @@
                             @product.unitInStock
                         </td>
                         <td style = "text-align: center;">
-                            <a href="@routes.ProductController.addProduct()" class="button edit"></a>
+                            <a href="@routes.ProductController.editProduct(product.id)" class="button edit"></a>
                             <a href="@routes.ProductController.deleteProduct(product.id)" class="button delete"></a>
                         </td>
                     </tr>
+                    }
                     <tr>
 
                     </tr>
@@ -81,5 +82,4 @@
     </div>
 
     @footer()
-    }
 }

@@ -1,6 +1,6 @@
-@()
+@(productForm: Form[models.ProductFormData],products : Seq[models.Product])(implicit request: RequestHeader,messages : Messages)
 
-@main("Danh sách sản phẩm") {
+@main("Trang chủ - Danh sách sản phẩm") {
     @header()
 
     <div id="main">

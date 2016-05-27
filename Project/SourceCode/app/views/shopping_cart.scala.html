@@ -1,4 +1,5 @@
-@()
+@(cartItemForm: Form[models.CartItemFormData],cartItems : Seq[models.CartItem])(implicit request: RequestHeader,messages : Messages)
+
 
 @main("Thông tin giỏ hàng") {
     @header()
