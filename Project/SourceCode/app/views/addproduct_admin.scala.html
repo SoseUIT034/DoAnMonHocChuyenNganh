@@ -1,36 +1,37 @@
-@(productForm: Form[models.ProductFormData],product : models.Product)(implicit request: RequestHeader,messages : Messages)
+@(productForm: Form[models.ProductFormData])(implicit request: RequestHeader,messages : Messages)
 
 @main("Thông tin sản phẩm - admin") {
-    @request.flash.get(messages("flash.success")).map { msg =>
-        <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>@msg</strong>
-        </div>
-    }
-    @request.flash.get(messages("flash.error")).map { msg =>
-        <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>@msg</strong>
-        </div>
-    }
+
     @header_admin()
     <div id="main">
+        @request.flash.get(messages("flash.success")).map { msg =>
+            <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>@msg</strong>
+            </div>
+        }
+        @request.flash.get(messages("flash.error")).map { msg =>
+            <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>@msg</strong>
+            </div>
+        }
         <h2>Thông tin sản phẩm</h2>
-        <form action="@routes.ProductController.updatedProduct(product.id)" method="post">
+        <form action="@routes.ProductController.savedProduct()" method="post">
             <fieldset>
                 <div class="editor-label">
                     <label for="ProductName">Tên sản phẩm:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="name" name="name" type="text" value="@product.name">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="name" name="name" type="text" value="">
                     <span class="field-validation-valid" data-valmsg-for="name" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="Manufacture">Hãng sản xuất:</label>
                 </div>
                 <div class="editor-field">
-                    <select id="category" name="category" value = "@product.category">
-                        <option value="@product.category">@product.category</option>
+                    <select id="category" name="category" value = "">
+                        <option value=""></option>
                         <option value="Apple">Apple</option>
                         <option value="Samsung">Samsung</option>
                         <option value="Nokia">Nokia</option>
@@ -44,21 +45,21 @@
                     <label for="description">Thông tin kĩ thuật:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="description" name="description" type="text" value="@product.description">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="description" name="description" type="text" value="">
                     <span class="field-validation-valid" data-valmsg-for="description" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="price">Giá sản phẩm:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="price" name="price" type="text" value="@product.price">đ
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="price" name="price" type="text" value="">đ
                     <span class="field-validation-valid" data-valmsg-for="price" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="unitInStock">Số lượng tồn:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="unitInStock" name="unitInStock" type="text" value="@product.unitInStock">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="unitInStock" name="unitInStock" type="text" value="">
                     <span class="field-validation-valid" data-valmsg-for="unitInStock" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
@@ -75,16 +76,6 @@
                 </p>
             </fieldset>
         </form>
-        @*<script>
-            function save(var id) {
-                var my = document.getElementById("myform");
-                if (id.equals("0"))
-                    my.action = "@routes.ProductController.savedProduct()";
-                else
-                        my.action = "@routes.ProductController.updatedProduct(id)";
-                my.submit();
-            }
-        </script>*@
         <a href="@routes.ProductController.allProduct()" class="btn btn-default">Back To List</a>
     </div>
    @footer()

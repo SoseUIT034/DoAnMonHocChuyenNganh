@@ -9,14 +9,16 @@ GET     /list_product               controllers.ProductController.listProduct
 GET     /product_admin              controllers.ProductController.allProduct
 GET     /add_product                controllers.ProductController.addProduct
 GET     /edit_product               controllers.ProductController.editProduct(id: Int)
-POST    /saved_product               controllers.ProductController.savedProduct
+POST    /updated_product            controllers.ProductController.updatedProduct(id: Int)
+POST    /saved_product              controllers.ProductController.savedProduct
 GET     /delete_product             controllers.ProductController.deleteProduct(id: Int)
 
 
 GET     /list_customer              controllers.CustomerController.listCustomer
 GET     /add_customer               controllers.CustomerController.addCustomer
-GET     /edit_customer              controllers.CustomerController.editCustomer
-POST    /saved_customer              controllers.CustomerController.savedCustomer
+GET     /edit_customer              controllers.CustomerController.editCustomer(id: Int)
+POST    /updated_customer           controllers.CustomerController.updatedCustomer(id: Int)
+POST    /saved_customer             controllers.CustomerController.savedCustomer
 GET     /delete_customer            controllers.CustomerController.deleteCustomer(id: Int)
 
 #GET     /list_cart                  controllers.CartController.listCart#
@@ -24,7 +26,7 @@ GET     /delete_customer            controllers.CustomerController.deleteCustome
 #GET     /delete_cart                controllers.CartController.deleteCart#(id: Int)
 
 GET     /list_cartItem              controllers.CartController.listCartItem
-#GET     /add_cartItem               controllers.CartController.addCartItem#
+POST    /add_cartItem               controllers.CartController.addCartItem(cusid: Int, proId: Int)
 GET     /delete_cartItem            controllers.CartController.deleteCartItem(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path

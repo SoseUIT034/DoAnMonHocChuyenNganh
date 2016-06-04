@@ -6,7 +6,7 @@ import play.api.data.Forms._
 /**
   * Created by Canh on 5/14/2016.
   */
-case class CartItem (id: Int, cartId: Int, productId: Int)
+case class Cart_Item (id: Int, cartId: Int, productId: Int)
 
 case class CartItemFormData (cart: CartFormData, product: ProductFormData)
 

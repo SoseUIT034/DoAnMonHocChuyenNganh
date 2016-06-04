@@ -10,7 +10,7 @@ case class Product (id: Int, name: String, category: String, description: String
 
 case class ProductFormData (name: String, category: String, description: String, price: Long, unitInStock: Int)
 
-object ProductForm{
+object ProductForm {
   val form = Form {
     mapping(
       "name" -> nonEmptyText,

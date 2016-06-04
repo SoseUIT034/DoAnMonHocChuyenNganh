@@ -39,15 +39,12 @@
                         <th>
                             UserName
                         </th>
-                        <th>
-                            PassWord
-                        </th>
                         <th></th>
                     </tr>
                     @for(customer <- customers) {
                         <tr>
                             <td>
-                                <a href="@routes.CustomerController.addCustomer()">@customer.name</a>
+                                <a href="@routes.CustomerController.editCustomer(customer.id)">@customer.name</a>
                             </td>
                             <td>
                             @customer.email
@@ -62,8 +59,8 @@
                             @customer.username
                             </td>
                             <td style = "text-align: center;">
-                                <a href="@routes.CustomerController.editCustomer()" class="button edit"></a>
-                                <a href="@routes.CustomerController.deleteCustomer(customer.id)" class="button delete"></a>
+                                <a href="@routes.CustomerController.editCustomer(customer.id)" class="button edit"></a>
+                                <a href="@routes.CustomerController.deleteCustomer(customer.id)" onclick="return confirm('Bạn có muốn xoá khách hàng này không?');" class="button delete"></a>
                             </td>
                         </tr>
                     }

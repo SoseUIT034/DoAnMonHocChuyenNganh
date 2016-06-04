@@ -1,7 +1,7 @@
 package dao
 
 import com.google.inject.ImplementedBy
-import models.CartItem
+import models.Cart_Item
 import scala.concurrent.Future
 
 /**
@@ -10,8 +10,8 @@ import scala.concurrent.Future
 
 @ImplementedBy(classOf[CartItemDAOImpl])
 trait CartItemDAO {
-  def add(cartItem: CartItem) : Future[String]
-  def get(id : Int) : Future[Option[CartItem]]
+  def add(cartItem: Cart_Item) : Future[String]
+  def get(id : Int) : Future[Option[Cart_Item]]
   def delete(id : Int) : Future[Int]
-  def listAll : Future[Seq[CartItem]]
+  def listAll : Future[Seq[Cart_Item]]
 }

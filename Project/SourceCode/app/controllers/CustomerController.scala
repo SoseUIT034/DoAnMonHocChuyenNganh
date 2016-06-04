@@ -29,17 +29,33 @@ import scala.concurrent.Future
 /*  def addCustomer = Action {implicit  request =>
 
   }*/
-  def addCustomer() = Action.async { implicit request =>
-    customerService.deleteCustomer(1) map { res =>
-      Redirect(routes.CustomerController.listCustomer())
+  def addCustomer() = Action { implicit request =>
+    Ok(views.html.addcustomer_admin(CustomerForm.form))
+  }
+
+  /** Edit Customer. */
+  def editCustomer(id: Int) = Action.async { implicit request =>
+    customerService.getCustomer(id) map { customer =>
+      Ok(views.html.editcustomer_admin(CustomerForm.form, customer))
     }
   }
 
+  /** Update Product. */
+  def updatedCustomer(id: Int) = Action.async { implicit request =>
+    CustomerForm.form.bindFromRequest.fold(
+      // if any error in submitted data
+      errorForm => Future.successful(Ok(views.html.editcustomer_admin(errorForm,Customer(0,"","",0,"","","")))),
+      data => {
+        customerService.updateCustomer(id,data.name,data.email,data.phone,data.address,data.username,data.password).map(res =>
+          Redirect(routes.CustomerController.listCustomer())
+        )
+      })
+  }
   /** Save Customer. */
   def savedCustomer() = Action.async { implicit request =>
     CustomerForm.form.bindFromRequest.fold(
       // if any error in submitted data
-      errorForm => Future.successful(Ok(views.html.editcustomer_admin(errorForm,Seq.empty[Customer]))),
+      errorForm => Future.successful(Ok(views.html.addcustomer_admin(errorForm))),
       data => {
         val newCustomer = Customer(0,data.name,data.email,data.phone,data.address,data.username, data.password)
         customerService.addCustomer(newCustomer).map(res =>
@@ -47,18 +63,7 @@ import scala.concurrent.Future
         )
       })
   }
-  /** Edit Customer. */
-  def editCustomer() = Action.async { implicit request =>
-    CustomerForm.form.bindFromRequest.fold(
-      // if any error in submitted data
-      errorForm => Future.successful(Ok(views.html.editcustomer_admin(errorForm,Seq.empty[Customer]))),
-      data => {
-        val newCustomer = Customer(0,data.name,data.email,data.phone,data.address,data.username, data.password)
-        customerService.addCustomer(newCustomer).map(res =>
-          Redirect(routes.CustomerController.listCustomer()).flashing(Messages("flash.success") -> res)
-        )
-      })
-  }
+
   /** Delete Customer.*/
   def deleteCustomer(id : Int) = Action.async { implicit request =>
     customerService.deleteCustomer(id) map { res =>

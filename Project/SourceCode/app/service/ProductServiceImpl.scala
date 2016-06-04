@@ -21,8 +21,12 @@ class ProductServiceImpl @Inject()(productDao: ProductDAO) extends ProductServic
     productDao.delete(id)
   }
 
-  override def getProduct(id: Int): Future[Option[Product]] = {
+  override def getProduct(id: Int): Future[Product] = {
     productDao.get(id)
+  }
+
+  override def updateProduct(id: Int, name: String, category: String, description: String, price: Long, unitInStock: Int): Future[Int] = {
+    productDao.update(id, name, category, description, price, unitInStock)
   }
 
   override def listAllProducts: Future[Seq[Product]] = {

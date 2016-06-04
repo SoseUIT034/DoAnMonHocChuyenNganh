@@ -1,4 +1,4 @@
-@(cartItemForm: Form[models.CartItemFormData],cartItems : Seq[models.CartItem])(implicit request: RequestHeader,messages : Messages)
+@(cartItemForm: Form[models.CartItemFormData],cartItems : Seq[models.Cart_Item])(implicit request: RequestHeader,messages : Messages)
 
 
 @main("Thông tin giỏ hàng") {
@@ -8,50 +8,49 @@
         <h2>Review your cart</h2>
 
         <button class="_btn checkout-btn entypo-forward">Checkout</button>
-        <table id="results">
-            <tbody>
-                <tr>
-                    <th>
-                        Tên điện thoại
-                    </th>
-                    <th>
-                        Hãng sản xuất
-                    </th>
-                    <th class = "th-info">
-                        Thông tin kĩ thuật
-                    </th>
-                    <th>
-                        Giá
-                    </th>
-                    <th></th>
-                </tr>
+        <form id="product-data-form" role="form" action='@routes.CartController.listCartItem()' method="POST">
+            <table id="results">
+                <tbody>
+                    <tr>
+                        <th>
+                            Tên điện thoại
+                        </th>
+                        <th>
+                            Hãng sản xuất
+                        </th>
+                        <th class = "th-info">
+                            Thông tin kĩ thuật
+                        </th>
+                        <th>
+                            Giá
+                        </th>
+                        <th></th>
+                    </tr>
+                    @for(cartItem <- cartItems){
+                    <tr>
+                        <td>
+                            @cartItem.productId
+                        </td>
+                        <td>
+                            @cartItem.cartId
+                        </td>
+                        <td class = "td-info">
+                            <wbr>
+                            @cartItem.id
+                            <wbr>
 
-                <tr>
-                    <td>
-                        iPhone 6S Plus 16GB
-                    </td>
-                    <td>
-                        Apple
-                    </td>
-                    <td class = "td-info">
-                        <wbr>
-                        Màn hình: Retina HD, 5.5 inches;
-                        HĐH: iOS 9;
-                        CPU: Chipset Apple A9;
-                        Camera: 12 MP, 1 SIM;
-                        Pin: Li-Po 2915 mAh;
-                        <wbr>
-
-                    </td>
-                    <td>
-                        21.790.000
-                    </td>
-                    <td style = "text-align: center;">
-                        <a href="" class="button delete"></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </td>
+                        <td>
+                            @cartItem.productId
+                        </td>
+                        <td style = "text-align: center;">
+                            <a href="@routes.CartController.deleteCartItem(cartItem.id)" class="button delete"></a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
         <div id="pageNavPosition" style = "margin-top: 20px;"></div>
         <script type="text/javascript">
             var pager = new Pager('results', 10);

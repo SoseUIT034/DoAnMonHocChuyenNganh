@@ -2,7 +2,7 @@ package controllers
 
 import com.google.inject.Inject
 import models.{Cart, CartForm}
-import models.{CartItem, CartItemForm}
+import models.{Cart_Item, CartItemForm}
 import play.api.i18n.{I18nSupport, Messages, MessagesApi}
 import play.api.libs.concurrent.Execution.Implicits._
 import play.api.mvc.{Action, Controller}
@@ -13,7 +13,8 @@ import scala.concurrent.Future
 
 /**
  * The Cart controller.
- * @param messagesApi The Play messages API.
+  *
+  * @param messagesApi The Play messages API.
  * @param cartService The user service implementation.
  */
  class CartController @Inject()(cartService: CartService,cartItemService: CartItemService, val messagesApi: MessagesApi) extends Controller with I18nSupport {
@@ -54,17 +55,13 @@ import scala.concurrent.Future
   }
 
   /** Add Cart.*/
- /* def addCartItem() = Action.async { implicit request =>
-    CartItemForm.form.bindFromRequest.fold(
-      // if any error in submitted data
-      errorForm => Future.successful(Ok(views.html.shopping_cart(errorForm,Seq.empty[CartItem]))),
-      data => {
-        val newCart = new CartItem(0,null,null)
-        cartItemService.addCartItem(newCart).map(res =>
+  def addCartItem(cusId: Int, proId: Int) = Action.async { implicit request =>
+     /* val cardId =  cartService.getCartId(cusId).id*/
+        val newItemCart = Cart_Item(0,0,proId)
+        cartItemService.addCartItem(newItemCart).map(res =>
           Redirect(routes.CartController.listCartItem()).flashing(Messages("flash.success") -> res)
         )
-      })
-  }*/
+  }
 
   /** Delete Cart.*/
   def deleteCartItem(id : Int) = Action.async { implicit request =>

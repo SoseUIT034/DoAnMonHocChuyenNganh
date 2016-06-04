@@ -32,6 +32,10 @@ class CartDAOImpl @Inject() (dbConfigProvider: DatabaseConfigProvider) extends C
     db.run(CartMap.cartTableQuery.filter(_.cartId === id).result.headOption)
   }
 
+ /* override def getCartId(custId: Int): Cart = {
+    db.run(CartMap.cartTableQuery.filter(_.customerId === custId).result.head)
+  }*/
+
   override def delete(id: Int): Future[Int] = {
     db.run(CartMap.cartTableQuery.filter(_.cartId === id).delete)
   }

@@ -6,9 +6,9 @@ import play.api.data.Forms._
 /**
   * Created by Canh on 5/14/2016.
   */
-case class Customer (id: Int, name: String, email: String, phone: Long, username: String, password: String, address: String)
+case class Customer (id: Int, name: String, email: String, phone: Long, address: String, username: String, password: String)
 
-case class CustomerFormData(name: String, email: String, phone: Long, username: String, password: String, address: String)
+case class CustomerFormData(name: String, email: String, phone: Long, address: String, username: String, password: String)
 
 //case class CustomerFormData1(name: String, email: String, phone: Long, username: String, password: String, address: AddressFormData)
 
@@ -18,9 +18,9 @@ object CustomerForm {
       "name" -> nonEmptyText,
       "email" -> email,
       "phone" -> longNumber,
+      "address" -> nonEmptyText,
       "username" -> nonEmptyText,
-      "password" -> nonEmptyText,
-      "addressId" -> nonEmptyText
+      "password" -> nonEmptyText
     )(CustomerFormData.apply)(CustomerFormData.unapply)
   )
 

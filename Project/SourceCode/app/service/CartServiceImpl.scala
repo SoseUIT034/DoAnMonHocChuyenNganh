@@ -24,6 +24,10 @@ class CartServiceImpl @Inject()(cartDao: CartDAO) extends CartService {
     cartDao.get(id)
   }
 
+/*  override def getCartId(cusId: Int): Cart  = {
+    cartDao.getCartId(cusId)
+  }*/
+
   override def listAllCarts: Future[Seq[Cart]] = {
     cartDao.listAll
   }

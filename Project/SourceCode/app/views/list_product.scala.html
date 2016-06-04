@@ -2,12 +2,25 @@
 
 @main("Trang chủ - Danh sách sản phẩm") {
     @header()
-
+    @request.flash.get(messages("flash.success")).map { msg =>
+        <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>@msg</strong>
+        </div>
+    }
+    @request.flash.get(messages("flash.error")).map { msg =>
+        <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>@msg</strong>
+        </div>
+    }
     <div id="main">
-        <h2>Iphone</h2>
+        <h2>Sản phẩm nổi bật</h2>
         <p></p>
+        <form id="product-data-form" role="form" action='' method="POST">
         <div class="container">
             <div class="row" style = "width: 100%; text-align: center;">
+            @for(product <- products){
                 <div class="single-product-content">
                     <br>
                     <div class="products">
@@ -19,16 +32,18 @@
                         </a>
 
                     </div>
-                    <h2 class="product-name" style = "margin-top: 10px;"><a href="" title="Fusce aliquam">Iphone 6S 64GB</a></h2>
+                    <h2 class="product-name" style = "margin-top: 10px;"><a href="" title="Fusce aliquam">@product.name</a></h2>
                     <div class="price-box">
-                        <p class="new-price"> <span class="price">21.799.000đ</span></p>
+                        <p class="new-price"> <span class="price">@product.price</span>đ</p>
                     </div>
                     <p style = "margin-top: 5px; margin-left: -10px;">
-                        <button class = "btn-addtocart"><img src = "@routes.Assets.at("images/cart.png")"></button>
+                        <button class = "btn-addtocart" ><a href="@routes.CartController.addCartItem(product.id,product.id)"><img src = "@routes.Assets.at("images/cart.png")"></a></button>
                     </p>
                 </div>
+            }
             </div>
         </div>
+        </form>
     </div>
 
    @footer()

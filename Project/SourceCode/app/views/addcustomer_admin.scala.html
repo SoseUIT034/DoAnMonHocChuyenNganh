@@ -1,51 +1,51 @@
-@(customerForm: Form[models.CustomerFormData],customer : models.Customer)(implicit request: RequestHeader,messages : Messages)
+@(customerForm: Form[models.CustomerFormData])(implicit request: RequestHeader,messages : Messages)
 
-@main("Thông tin khách hàng - admin") {
+@main("Thông tin sản phẩm - admin") {
     @header_admin()
     <div id="main">
-        <h2>Thông tin khách hàng</h2>
-        <form action="@routes.CustomerController.updatedCustomer(customer.id)" method="post">
+        <h2>Thông tin sản phẩm</h2>
+        <form action="@routes.CustomerController.savedCustomer()" method="post">
             <fieldset>
                 <div class="editor-label">
                     <label for="name">Tên khách hàng:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="name" name="name" type="text" value="@customer.name">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="name" name="name" type="text" value="">
                     <span class="field-validation-valid" data-valmsg-for="name" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="email">Email:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="email" name="email" type="text" value="@customer.email">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="email" name="email" type="text" value="">
                     <span class="field-validation-valid" data-valmsg-for="email" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="phone">Phone:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="phone" name="phone" type="text" value="@customer.phone">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="phone" name="phone" type="text" value="">
                     <span class="field-validation-valid" data-valmsg-for="phone" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="address">Địa chỉ:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="address" name="address" type="text" value="@customer.address">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="address" name="address" type="text" value="">đ
                     <span class="field-validation-valid" data-valmsg-for="address" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="username">Tên tài khoản:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="username" name="username" type="text" value="@customer.username">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="username" name="username" type="text" value="">
                     <span class="field-validation-valid" data-valmsg-for="username" data-valmsg-replace="true"></span>
                 </div>
                 <div class="editor-label">
                     <label for="password">Mật khẩu:</label>
                 </div>
                 <div class="editor-field">
-                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="password" name="password" type="password" value="@customer.password">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="1024" id="password" name="password" type="password" value="">
                     <span class="field-validation-valid" data-valmsg-for="password" data-valmsg-replace="true"></span>
                 </div>
                 <br>

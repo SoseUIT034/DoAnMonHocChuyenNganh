@@ -3,12 +3,13 @@ package dao
 import javax.inject.Inject
 
 import com.google.inject.Singleton
+import dao.ProductMap.ProductTable
 import models.Product
 import play.api.Play._
 import play.api.db.slick.DatabaseConfigProvider
 import slick.driver.JdbcProfile
-import scala.concurrent.ExecutionContext.Implicits.global
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 /**
@@ -29,12 +30,18 @@ class ProductDAOImpl @Inject()(dbConfigProvider: DatabaseConfigProvider) extends
     }
   }
 
-  override def get(id: Int): Future[Option[Product]] = {
-    db.run(ProductMap.productTableQuery.filter(_.id === id).result.headOption)
+  override def get(id: Int): Future[Product] = {
+    db.run(ProductMap.productTableQuery.filter(_.id === id).result.head)
   }
 
   override def delete(id: Int): Future[Int] = {
     db.run(ProductMap.productTableQuery.filter(_.id === id).delete)
+  }
+
+  override def update(id: Int, name: String, category: String, description: String, price: Long, unitInStock: Int): Future[Int] = {
+    db.run(ProductMap.productTableQuery.filter(_.id === id).map(product =>
+      (product.id,product.name,product.category,product.description,product.price,product.unitInStock))
+      .update(id,name,category,description,price,unitInStock))
   }
 
   override def listAll: Future[Seq[Product]] = {

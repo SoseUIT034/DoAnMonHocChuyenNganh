@@ -62,7 +62,7 @@
                         </td>
                         <td style = "text-align: center;">
                             <a href="@routes.ProductController.editProduct(product.id)" class="button edit"></a>
-                            <a href="@routes.ProductController.deleteProduct(product.id)" class="button delete"></a>
+                            <a href="@routes.ProductController.deleteProduct(product.id)" onclick="return confirm('Bạn có muốn xoá sản phẩm này không?');" class="button delete"></a>
                         </td>
                     </tr>
                     }

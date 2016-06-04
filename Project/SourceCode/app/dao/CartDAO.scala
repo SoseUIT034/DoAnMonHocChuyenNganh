@@ -13,6 +13,7 @@ import scala.concurrent.Future
 trait CartDAO {
   def add(cart: Cart) : Future[String]
   def get(id : Int) : Future[Option[Cart]]
+/*  def getCartId(custId : Int) : Cart*/
   def delete(id : Int) : Future[Int]
   def listAll : Future[Seq[Cart]]
 }

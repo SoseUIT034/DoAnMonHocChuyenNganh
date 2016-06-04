@@ -28,8 +28,14 @@ class CustomerDAOImpl @Inject()(dbConfigProvider: DatabaseConfigProvider) extend
     }
   }
 
-  override def get(id: Int): Future[Option[Customer]] = {
-    db.run(CustomerMap.customerTableQuery.filter(_.id === id).result.headOption)
+  override def get(id: Int): Future[Customer] = {
+    db.run(CustomerMap.customerTableQuery.filter(_.id === id).result.head)
+  }
+
+  override def update(id: Int, name: String, email: String, phone: Long, address: String , username: String, password: String): Future[Int] = {
+    db.run(CustomerMap.customerTableQuery.filter(_.id === id).map(customer =>
+      (customer.id,customer.name,customer.email,customer.phone,customer.address,customer.username,customer.password))
+      .update(id,name,email,phone,address,username,password))
   }
 
   override def delete(id: Int): Future[Int] = {
@@ -57,14 +63,15 @@ object CustomerMap {
 
     def phone = column[Long]("customer_phone")
 
+    def address = column[String]("address")
+
     def username = column[String]("username")
 
     def password = column[String]("password")
 
-    def address = column[String]("address")
 
 
-    override def * = (id, name, email, phone, username, password, address) <>(Customer.tupled, Customer.unapply)
+    override def * = (id, name, email, phone, address, username, password) <>(Customer.tupled, Customer.unapply)
   }
 
   implicit val customerTableQuery = TableQuery[CustomerTable]
